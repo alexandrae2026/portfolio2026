@@ -7,6 +7,7 @@
   --ink: #1e2023;
   --gilt: #8a6a2c;
   --ground: var(--paper);
+  --view: 70vh;  /* the tallest any work is shown, so a whole piece fits on a laptop screen */
   color-scheme: light;
 }
 
@@ -70,11 +71,13 @@ a:focus-visible { outline: 2px solid var(--gilt); outline-offset: 3px; }
 .plate { margin: 0; display: grid; gap: 14px; justify-items: start; }
 .plate + .plate { margin-top: clamp(40px, 6vw, 64px); }
 .plate-media { display: contents; }
-.plate-media > img { width: auto; max-height: 86vh; }
+.plate-media > img { width: auto; max-height: var(--view); }
+.capped { display: block; width: 100%; }
+.capped img { width: 100%; height: auto; }
 .plate img { box-shadow: 0 1px 0 color-mix(in srgb, var(--ink) 10%, transparent); }
 
 /* a row of images held to one height: each figure grows by its aspect ratio */
-.row { display: flex; gap: 14px; width: 100%; }
+.row { display: flex; gap: 14px; width: 100%; max-width: min(var(--mw), calc(var(--view) * var(--sum) + var(--gaps))); }
 .row > img { flex: var(--ar) 1 0; min-width: 0; width: 100%; }
 
 .plate figcaption {
@@ -91,7 +94,7 @@ a:focus-visible { outline: 2px solid var(--gilt); outline-offset: 3px; }
 .note i { font-style: italic; }
 
 /* moving image */
-.clip, .film { display: block; max-width: 100%; height: auto; max-height: 86vh; width: auto; background: transparent; }
+.clip, .film { display: block; max-width: 100%; height: auto; max-height: var(--view); width: auto; background: transparent; }
 .clip { cursor: pointer; }
 .clip:focus-visible, .film:focus-visible { outline: 2px solid var(--gilt); outline-offset: 3px; }
 .player { display: grid; gap: 10px; width: fit-content; max-width: 100%; }
@@ -111,12 +114,13 @@ a:focus-visible { outline: 2px solid var(--gilt); outline-offset: 3px; }
 .pages:focus-visible { outline: 2px solid var(--gilt); outline-offset: 4px; }
 .page { flex: none; scroll-snap-align: start; display: block; }
 .page img {
-  height: min(clamp(360px, 74vh, 820px), calc(var(--h, 2000px) * 1.2));
+  height: min(clamp(320px, 64vh, 720px), calc(var(--h, 2000px) * 1.2));
   width: auto; max-width: none; background: #fff;
   box-shadow: 0 1px 3px color-mix(in srgb, var(--ink) 18%, transparent);
 }
 .book-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; }
 .book-controls button { font-family: inherit; background: transparent; cursor: pointer; }
+.book-controls button:disabled { opacity: .35; cursor: default; }
 .hint { font-size: 13px; font-style: italic; color: color-mix(in srgb, var(--ink) 55%, transparent); }
 
 /* text that opens a work, and the links that close it */
@@ -167,7 +171,7 @@ footer.close .inner { border-top: 1px solid color-mix(in srgb, var(--ink) 14%, t
 
 @media (max-width: 640px) {
   body { font-size: 15.5px; }
-  .row { flex-direction: column; }
+  .row { flex-direction: column; max-width: var(--mw); }
   .row > img { flex: none; }
   .plate figcaption { font-size: 13.5px; }
 }

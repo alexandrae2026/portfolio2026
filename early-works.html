@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;1,400&display=swap">
-<link rel="stylesheet" href="css/portfolio.css">
+<link rel="stylesheet" href="css/portfolio.css?v=8055ab87">
 </head>
 <body>
 <header class="band masthead" style="--ground:#fcfcfa">
@@ -70,7 +70,7 @@
 
       <figure class="plate">
         <div class="plate-media">
-        <div class="row" style="max-width:1758px">
+        <div class="row" style="--mw:1758px;--sum:2.180;--gaps:14px">
           <img src="images/early/enlisted-dogs-i.jpg" width="594" height="800" style="--ar:0.743"
              alt="Graphite drawing of a dog standing upright, its form dissolving into the pale paper.">
           <img src="images/early/enlisted-dogs-iiii.jpg" width="1440" height="1002" style="--ar:1.437"
@@ -109,7 +109,7 @@
         <div class="plate-media">
         <img src="images/early/fur-suite-remnants-a.jpg" width="718" height="455"
              alt="Two photopolymer etchings side by side: a round tuft of fur and a dark, diamond-shaped pelt fragment.">
-        <div class="row" style="max-width:710px">
+        <div class="row" style="--mw:710px;--sum:1.588;--gaps:14px">
           <img src="images/early/fur-suite-remnants-b.jpg" width="344" height="441" style="--ar:0.780"
              alt="Photopolymer etching of a flattened fur toy, pale at its centre and dark at its edges.">
           <img src="images/early/fur-suite-remnants-c.jpg" width="354" height="438" style="--ar:0.808"
@@ -130,7 +130,7 @@
 
       <figure class="plate">
         <div class="plate-media">
-        <div class="row" style="max-width:1935px">
+        <div class="row" style="--mw:1935px;--sum:1.523;--gaps:14px">
           <img src="images/early/optics-of-animal-love-boxes.jpg" width="962" height="1261" style="--ar:0.763"
              alt="Three pale wooden boxes mounted on a white wall, each with a peep hole and a short wooden crank, lit from above.">
           <img src="images/early/optics-of-animal-love-view.jpg" width="959" height="1261" style="--ar:0.761"
@@ -170,7 +170,7 @@
 
       <figure class="plate">
         <div class="plate-media">
-        <div class="row" style="max-width:2794px">
+        <div class="row" style="--mw:2794px;--sum:1.672;--gaps:14px">
           <img src="images/early/archive-of-beautiful-memories-park.jpg" width="1708" height="1684" style="--ar:1.014"
              alt="A wooden post carrying a QR code stands among spruce trunks on a sunlit forest path in Point Pleasant Park.">
           <img src="images/early/archive-of-beautiful-memories-poster.jpg" width="1094" height="1662" style="--ar:0.658"
@@ -198,14 +198,31 @@
 document.querySelectorAll('.book').forEach(function (book) {
   var strip = book.querySelector('.pages');
   var items = Array.prototype.slice.call(strip.querySelectorAll('.page'));
-  book.querySelectorAll('[data-turn]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var x = strip.scrollLeft, dir = Number(b.dataset.turn), target = null;
-      if (dir > 0) { target = items.find(function (it) { return it.offsetLeft > x + 4; }); }
-      else { items.forEach(function (it) { if (it.offsetLeft < x - 4) target = it; }); }
-      strip.scrollTo({ left: target ? target.offsetLeft : (dir > 0 ? strip.scrollWidth : 0), behavior: 'smooth' });
-    });
-  });
+  var prev = book.querySelector('[data-turn="-1"]'), next = book.querySelector('[data-turn="1"]');
+  function lefts() {  // where each page starts, measured inside the strip
+    var base = strip.getBoundingClientRect().left - strip.scrollLeft;
+    return items.map(function (it) { return it.getBoundingClientRect().left - base; });
+  }
+  function ends() {
+    var max = strip.scrollWidth - strip.clientWidth;
+    prev.disabled = strip.scrollLeft <= 2;
+    next.disabled = strip.scrollLeft >= max - 2;
+  }
+  function turn(dir) {
+    var x = strip.scrollLeft, max = strip.scrollWidth - strip.clientWidth, pos = lefts(), to;
+    if (dir > 0) { to = pos.find(function (l) { return l > x + 4; }); if (to === undefined || to > max) to = max; }
+    else { to = 0; pos.forEach(function (l) { if (l < x - 4) to = l; }); }
+    strip.style.scrollSnapType = 'none';
+    strip.scrollTo({ left: to, behavior: 'smooth' });
+    clearTimeout(strip._snap);
+    strip._snap = setTimeout(function () { strip.style.scrollSnapType = ''; ends(); }, 700);
+  }
+  prev.addEventListener('click', function () { turn(-1); });
+  next.addEventListener('click', function () { turn(1); });
+  strip.addEventListener('scroll', ends, { passive: true });
+  window.addEventListener('resize', ends);
+  window.addEventListener('load', ends);
+  ends();
 });
 </script>
 </body>
