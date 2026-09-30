@@ -6,13 +6,12 @@
 <title>Recent work · Alexandra Emberley</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;1,400&display=swap">
 <link rel="stylesheet" href="css/portfolio.css">
 </head>
 <body>
-<header class="band masthead" style="--ground:#f3f1ec">
+<header class="band masthead" style="--ground:#fcfcfa">
   <div class="inner">
-    <a class="name" href="index.html">Alexandra Emberley</a>
     <nav aria-label="Portfolio sections">
       <ul class="sections">
         <li><a href="early-works.html">Early works</a></li>
@@ -24,7 +23,7 @@
 </header>
 
 <main>
-  <section class="band opener" style="--ground:#f3f1ec" aria-labelledby="section-title">
+  <section class="band opener" style="--ground:#fcfcfa" aria-labelledby="section-title">
     <div class="inner">
       <span class="label">Portfolio 2026 &nbsp;·&nbsp; III</span>
       <h1 id="section-title">Recent work</h1>
@@ -32,7 +31,7 @@
     </div>
   </section>
 
-  <article class="band work" style="--ground:#e8ebea" aria-labelledby="w-mycelium">
+  <article class="band work" style="--ground:#f3f3f0" aria-labelledby="w-mycelium">
     <div class="inner">
       <header class="work-head">
         <h2 id="w-mycelium">Mycelium Drawing Study</h2>
@@ -40,11 +39,13 @@
       </header>
 
       <figure class="plate">
-        <video class="clip" src="media/mycelium.mp4" poster="media/mycelium-poster.jpg" width="1080" height="1440" muted loop playsinline controls preload="none" aria-label="Coloured lines traced from real fungal hyphae are drawn from base to tip in groups of thirteen, accumulating into a dense network on a white page."></video>
-        <figcaption><i>Mycelium Drawing Study</i>, Alexandra Emberley, 2026. Animation, 2 min 45 s, silent. All rights reserved.</figcaption>
+        <div class="plate-media">
+        <video class="clip" src="media/mycelium.mp4" poster="media/mycelium-poster.jpg" width="1080" height="1440" muted loop playsinline preload="none" tabindex="0" aria-label="Coloured lines traced from real fungal hyphae are drawn from base to tip in groups of thirteen, accumulating into a dense network on a white page.. Select to pause or play."></video>
+        </div>
+        <figcaption><i>Mycelium Drawing Study</i>, 2026. Animation, 2 min 45 s, silent. All rights reserved.</figcaption>
       </figure>
       <p class="note"><span class="label">About the work</span></p>
-      <p class="note"><i>Mycelium</i> draws 143 hyphae of the fungus <i>Podospora anserina</i>, each traced from a laboratory time-lapse of a single thallus growing on agar. Every line is a real filament: its shape is the path the hypha took across the plate, and its weight is the speed at which it grew.</p>
+      <p class="note"><i>Mycelium Drawing Study</i> draws 143 hyphae of the fungus <i>Podospora anserina</i>, each traced from a laboratory time-lapse of a single thallus growing on agar. Every line is a real filament: its shape is the path the hypha took across the plate, and its weight is the speed at which it grew.</p>
       <p class="note">The recording, made by Éric Herbert and colleagues at Université Paris Cité, shows a 25 mm field photographed every twenty minutes for 27 hours, from one germinating spore to a network of several thousand branches. I separated the film into frames, isolated the filaments from the agar, thinned them to one-pixel skeletons, and traced the network of the twentieth hour into 932 ordered paths, one per hypha. Beyond that hour the network is too dense to separate.</p>
       <p class="note">An earlier version of this animation, made when I first began working with code, had the same structure but drew curves built from sines. This version keeps the structure and replaces the invention with data. Each iteration takes thirteen hyphae, removes them from the network, and scatters them across the page; twelve are drawn together over fifteen seconds, from base to tip, and the thirteenth arrives late. Finished iterations stay. The line weight follows each hypha’s measured growth rate, the fastest heaviest, as in a living fungus, where the leading hyphae are wide and the lateral branches fine.</p>
       <div class="colophon"><span class="label">Colophon</span><p>Source recording: Éric Herbert, <i>Growth of Podospora anserina fungal network</i>, figshare, 2019, <a href="https://doi.org/10.6084/m9.figshare.9897056" target="_blank" rel="noopener">https://doi.org/10.6084/m9.figshare.9897056</a>, CC BY 4.0. Made for Dikec et al., <i>Scientific Reports</i> 10, 3131 (2020).</p><p>Extraction, tracing, and animation in Python (NumPy, SciPy, scikit-image, OpenCV, Matplotlib); encoded with FFmpeg.</p></div>
@@ -52,7 +53,7 @@
     </div>
   </article>
 
-  <article class="band work" style="--ground:#fdfbf4" aria-labelledby="w-creaturely">
+  <article class="band work" style="--ground:#fcfcfa" aria-labelledby="w-creaturely">
     <div class="inner">
       <header class="work-head">
         <h2 id="w-creaturely">creaturely</h2>
@@ -61,21 +62,55 @@
       <p class="note lead">Each animation begins with a poem written in the form of a Python script and takes as its starting point a quote from the creature in Mary Shelley’s <i>Frankenstein</i>, in which he describes his earliest memories of sensation and language. The animations borrow the logic of the calligram, as poems that take the shape of or depict their content. Letters then morph into forms such as a seahorse, birds, and moths, which multiply, sing, or tremble in response to real-world data: hydrophone recordings, radio waves from the magnetosphere, birdsong, and fungal electrical signals.</p>
 
       <figure class="plate">
-        <video class="film" src="media/creaturely-photonic-emergence.mp4" poster="media/creaturely-photonic-emergence-poster.jpg" width="960" height="540" controls preload="none" playsinline aria-label="photonic emergence: a poem in Python script whose letters gather into a seahorse."></video>
-        <figcaption><i>photonic emergence</i>, 2025.</figcaption>
+        <div class="plate-media">
+        <div class="player">
+          <video class="film" src="media/creaturely-photonic-emergence.mp4" poster="media/creaturely-photonic-emergence-poster.jpg" width="960" height="540" playsinline preload="none" aria-label="photonic emergence: a poem in Python script whose letters gather into a seahorse."></video>
+          <div class="player-controls">
+            <button type="button" class="btn" data-act="play">Play</button>
+            <input type="range" class="seek" min="0" max="1000" value="0" step="1" aria-label="Position in the film">
+            <span class="time">0:00</span>
+            <button type="button" class="btn" data-act="mute">Mute</button>
+            <button type="button" class="btn" data-act="full">Full screen</button>
+          </div>
+        </div>
+        </div>
+        <figcaption><i>photonic emergence</i>, 2026.</figcaption>
       </figure>
 
       <figure class="plate">
-        <video class="film" src="media/creaturely-sonic-field.mp4" poster="media/creaturely-sonic-field-poster.jpg" width="960" height="540" controls preload="none" playsinline aria-label="sonic field: a poem in Python script whose letters gather into birds."></video>
+        <div class="plate-media">
+        <div class="player">
+          <video class="film" src="media/creaturely-sonic-field.mp4" poster="media/creaturely-sonic-field-poster.jpg" width="960" height="540" playsinline preload="none" aria-label="sonic field: a poem in Python script whose letters gather into birds."></video>
+          <div class="player-controls">
+            <button type="button" class="btn" data-act="play">Play</button>
+            <input type="range" class="seek" min="0" max="1000" value="0" step="1" aria-label="Position in the film">
+            <span class="time">0:00</span>
+            <button type="button" class="btn" data-act="mute">Mute</button>
+            <button type="button" class="btn" data-act="full">Full screen</button>
+          </div>
+        </div>
+        </div>
         <figcaption><i>sonic field</i>, 2026.</figcaption>
       </figure>
 
       <figure class="plate">
-        <video class="film" src="media/creaturely-filament.mp4" poster="media/creaturely-filament-poster.jpg" width="960" height="540" controls preload="none" playsinline aria-label="filament: a poem in Python script whose letters gather into moths and mycelium."></video>
+        <div class="plate-media">
+        <div class="player">
+          <video class="film" src="media/creaturely-filament.mp4" poster="media/creaturely-filament-poster.jpg" width="960" height="540" playsinline preload="none" aria-label="filament: a poem in Python script whose letters gather into moths and mycelium."></video>
+          <div class="player-controls">
+            <button type="button" class="btn" data-act="play">Play</button>
+            <input type="range" class="seek" min="0" max="1000" value="0" step="1" aria-label="Position in the film">
+            <span class="time">0:00</span>
+            <button type="button" class="btn" data-act="mute">Mute</button>
+            <button type="button" class="btn" data-act="full">Full screen</button>
+          </div>
+        </div>
+        </div>
         <figcaption><i>filament</i>, 2026.</figcaption>
       </figure>
 
       <figure class="plate">
+        <div class="plate-media">
         <p class="note" style="margin:0 0 8px">Three embroidered collars carry the imagery of the animations into stitch, connecting the human hand to the virtual world and extending the collaboration through embodied and tactile experience.</p>
         <div class="row" style="max-width:3628px">
           <img src="images/recent/creaturely-collar-photonic-emergence.jpg" width="1200" height="1200" style="--ar:1.000"
@@ -84,6 +119,7 @@
              alt="The sonic field collar: a hand-embroidered collar on silk organza with birds in thread and beads.">
           <img src="images/recent/creaturely-collar-filament.jpg" width="1200" height="1200" style="--ar:1.000"
              alt="The filament collar: a hand-embroidered collar on silk organza with moths and fine mycelial lines.">
+        </div>
         </div>
         <figcaption><span class="line"><i>photonic emergence collar</i>, 2026. Hand embroidery on silk organza: thread, beads, and couture techniques. 18 × 18 inches.</span><span class="line"><i>sonic field collar</i>, 2026. Hand embroidery on silk organza: thread, beads, and couture techniques. 18 × 18 inches.</span><span class="line"><i>filament collar</i>, 2026. Hand embroidery on silk organza: thread, beads, and couture techniques. 18 × 18 inches.</span></figcaption>
       </figure>
@@ -101,19 +137,23 @@
       </header>
 
       <figure class="plate">
+        <div class="plate-media">
         <img src="images/recent/cordyceps-septet.jpg" width="583" height="799"
              alt="Seven lines of light in a dark field, with gilt arcs joining channels that spike together and blue threads of the model&#x27;s attention.">
+        </div>
         <figcaption>Electrical activity in a fungus rendered as light and sound, with the reading of a small model trained on the voltage data.</figcaption>
       </figure>
 
       <figure class="plate">
+        <div class="plate-media">
         <div class="row" style="max-width:2264px">
           <img src="images/recent/cordyceps-inner-paths.jpg" width="1200" height="1200" style="--ar:1.000"
              alt="Thousands of fine pale lines tangled into a long cloud on a dark ground, densest along its centre and loosening into single wandering lines at the edges.">
           <img src="images/recent/cordyceps-attention-frieze.jpg" width="1820" height="2080" style="--ar:0.875"
              alt="Fine horizontal stripes of light and dark on a dark ground, grouped in bands from top to bottom, like a woven textile.">
         </div>
-        <figcaption><span class="line">Thread Studies: <i>Inner paths</i> and <i>Attention frieze</i>.</span><span class="line">I take two readings from inside the trained model and flatten them onto a plane, as studies toward an embroidered work. They are ideas, not finished works.</span></figcaption>
+        </div>
+        <figcaption>Thread Studies: <i>Inner paths</i> and <i>Attention frieze</i>.</figcaption>
       </figure>
       <div class="next work-links">
         <a class="btn" href="cordyceps-septet.html">Enter the work</a>
@@ -124,7 +164,7 @@
   </article>
 </main>
 
-<footer class="band close" style="--ground:#f3f1ec">
+<footer class="band close" style="--ground:#fcfcfa">
   <div class="inner">
     <div class="next">
       <span class="label">Next</span>
@@ -147,6 +187,43 @@
   }, { threshold: 0.35 });
   clips.forEach(function (v) { seen.observe(v); });
 })();
+document.querySelectorAll('video.clip').forEach(function (v) {
+  function toggle() { if (v.paused) { v.play().catch(function () {}); } else { v.pause(); } }
+  v.addEventListener('click', toggle);
+  v.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+});
+</script>
+<script>
+document.querySelectorAll('.player').forEach(function (p) {
+  var v = p.querySelector('video'), play = p.querySelector('[data-act="play"]'),
+      mute = p.querySelector('[data-act="mute"]'), full = p.querySelector('[data-act="full"]'),
+      seek = p.querySelector('.seek'), time = p.querySelector('.time'), dragging = false;
+  function fmt(t) { t = Math.max(0, Math.floor(t || 0)); return Math.floor(t / 60) + ':' + ('0' + t % 60).slice(-2); }
+  function show() {
+    time.textContent = fmt(v.currentTime) + (isFinite(v.duration) ? ' / ' + fmt(v.duration) : '');
+    if (!dragging && isFinite(v.duration) && v.duration > 0) seek.value = Math.round(1000 * v.currentTime / v.duration);
+  }
+  function toggle() { if (v.paused) { v.play().catch(function () {}); } else { v.pause(); } }
+  play.addEventListener('click', toggle);
+  v.addEventListener('click', toggle);
+  v.addEventListener('play', function () { play.textContent = 'Pause'; });
+  v.addEventListener('pause', function () { play.textContent = 'Play'; });
+  v.addEventListener('ended', function () { play.textContent = 'Play'; });
+  v.addEventListener('timeupdate', show);
+  v.addEventListener('loadedmetadata', show);
+  seek.addEventListener('input', function () {
+    dragging = true;
+    if (v.readyState === 0) { v.load(); }
+    var go = function () { if (isFinite(v.duration)) v.currentTime = v.duration * seek.value / 1000; };
+    if (isFinite(v.duration)) go(); else v.addEventListener('loadedmetadata', go, { once: true });
+  });
+  seek.addEventListener('change', function () { dragging = false; });
+  mute.addEventListener('click', function () { v.muted = !v.muted; mute.textContent = v.muted ? 'Sound on' : 'Mute'; });
+  full.addEventListener('click', function () {
+    var el = v.requestFullscreen ? v : null;
+    if (el) { el.requestFullscreen().catch(function () {}); } else if (v.webkitEnterFullscreen) { v.webkitEnterFullscreen(); }
+  });
+});
 </script>
 </body>
 </html>
