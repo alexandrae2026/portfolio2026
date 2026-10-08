@@ -176,8 +176,8 @@
   // and while it holds, waves of more and less open sacs pass along it (the passing cloud)
   let cur = "quiet", inc = "quiet", dir = 0, prog = 1, sweep = 8, waveT = 0;
   function planDream(from, until) {                 // two or three states, held in turn, with a pale one now and then
-    const names = ["green", "coral", "violet"]; const n = 2 + (Math.random() < 0.5 ? 1 : 0); const seq = [];
-    let last = null; for (let i = 0; i < n; i++) { let pick; do { pick = Math.random() < 0.18 ? "pale" : names[Math.floor(Math.random() * 3)]; } while (pick === last); seq.push(pick); last = pick; }
+    const names = ["green", "coral", "coral", "violet"]; const n = 2 + (Math.random() < 0.5 ? 1 : 0); const seq = [];   // coral twice: it is the colour the animal shows most
+    let last = null; for (let i = 0; i < n; i++) { let pick; do { pick = Math.random() < 0.18 ? "pale" : names[Math.floor(Math.random() * 4)]; } while (pick === last); seq.push(pick); last = pick; }
     const span = (until - from) / n; plan = seq.map((name, i) => ({ name, until: from + span * (i + 1) }));
   }
   let skyMin = 5 * 60 + 20, sky = skyAt(skyMin), lumS = sky.lum, lumPrev = sky.lum, change = 0;                                     // minutes into the record, beginning in the last of Sunday's dark before dawn; lumS is the light as the skin receives it, a breath behind
@@ -187,7 +187,8 @@
   // ---------- the echo: what the model expected the light to be, one reading ahead, given only the record's past ----------
   const lumOf = i => { const b = SKY[((i % SKY.length) + SKY.length) % SKY.length]; return Math.max(0, Math.min(1, (Math.log10(10 ** ((b - 1) / 254 * SKY_SPAN - 2)) + 2) / 5.5)); };
   let predStep = -1, lumP = 0, lumPS = 0, attn = null;
-  let echoA = 0.3; const ERR_GAIN = 3;   // an error the size of this model's typical miss on the test week (rmse 0.11 on the page's scale of light) fills a third of the tint
+  const ADAPT = 0.5;                       // how far the eye adapts to the water's colour: 0 sees the light as it is, 1 sees the skin as under white light
+  let echoA = 0.2; const ERR_GAIN = 3;   // an error the size of this model's typical miss on the test week (rmse 0.11 on the page's scale of light) fills a third of the tint
   const WARM_T = [1.35, 1.25, 1.05, .85, .65, .5, .4], COOL_T = [.45, .55, .7, .95, 1.15, 1.3, 1.3];   // the tints of error: amber when the model imagined more light than came, blue when the sky brought more than it expected
   function predictAt(step) {                        // the last K readings before this step, with the hour of each, go in; the model's guess for this step comes out
     const X = new Float64Array(MODEL.K * 3); for (let i = 0; i < MODEL.K; i++) { const idx = step - MODEL.K + i, ph = (((idx % 144) + 144) % 144) / 144 * 2 * Math.PI; X[i * 3] = lumOf(idx); X[i * 3 + 1] = Math.sin(ph); X[i * 3 + 2] = Math.cos(ph); }
@@ -221,8 +222,10 @@
     const act = sleep(dt);
     const lumD = Math.max(lumS, 0.35 * act);                                                       // a dream carries a little light of its own, so its colours show in the dark hours: a liberty
     const L = ambient(0.0 + 0.22 * lumD).map(v => v * (0.05 + 0.95 * lumD ** 1.5));
+    const Lmean = L.reduce((a, v) => a + v, 0) / NB, adapt = L.map(v => (Lmean / Math.max(1e-6, v)) ** ADAPT);   // the eye adapts to the water's light: the skin is seen partly as it would be under white light, so a coral reads as coral in blue water
+    const toRGBa = S => toRGB(S.map((v, b) => v * adapt[b]));
     const err = lumPS - lumS, mag = Math.min(1, Math.abs(err) * ERR_GAIN), TINT = err > 0 ? WARM_T : COOL_T;   // the model's error: how far the light it expected sits from the light that came. Positive, it imagined more light than there was
-    echoA = 0.3 + 0.5 * mag;                                                                                      // the echo's strength follows its error: faint when the model was right
+    echoA = 0.2 + 0.4 * mag;                                                                                      // the echo's strength follows its error: faint when the model was right
     const cw = +sl.chrom.value * (0.06 + 0.94 * act), iw = +sl.irid.value, lw = +sl.leuc.value;
     const view = Math.PI / 2 - pitch;                            // angle between the eye and the slab's normal
     const shift = Math.sqrt(1 - (Math.sin(view) / 1.55) ** 2);   // plates reflect shorter waves when seen aslant
@@ -261,7 +264,7 @@
         surf[b] = (ri + rl) * through * (1 - cov) + sac[b] * cov;                   // the surface: all three layers at once, as seen from above
         SPEC[b] += surf[b]; iSum += ri; wSum += rl; pSum += ir;
       }
-      c.sacc = toRGB(sac); c.platec = toRGB(plate); c.whitec = toRGB(white); c.surfc = toRGB(surf); { let SPECM = 0; for (let b = 0; b < 7; b++) SPECM += surf[b]; c.echoc = toRGB(surf.map((v, b) => { const g = (SPECM / 7) * 0.7 + v * 0.3; return g * (1 + mag * (TINT[b] - 1)) * (1 + 0.5 * mag); })); } c.cov = cov; c.pstr = Math.min(1, pSum * 1.2); c.wstr = lw;
+      c.sacc = toRGBa(sac); c.platec = toRGBa(plate); c.whitec = toRGBa(white); c.surfc = toRGBa(surf); { let SPECM = 0; for (let b = 0; b < 7; b++) SPECM += surf[b]; c.echoc = toRGBa(surf.map((v, b) => { const g = (SPECM / 7) * 0.7 + v * 0.3; return g * (1 + mag * (TINT[b] - 1)) * (1 + 0.5 * mag); })); } c.cov = cov; c.pstr = Math.min(1, pSum * 1.2); c.wstr = lw;
       iAcc += iSum; wAcc += wSum;
     }
     for (let b = 0; b < NB; b++) SPEC[b] /= N; iridShare = iAcc / N; whiteShare = wAcc / N;
