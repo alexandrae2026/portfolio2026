@@ -1,0 +1,12 @@
+Portfolio: Cephalopod Songs upload
+
+1. Drag these eight pages into the repo's top level. Five replace existing pages
+   (index, recent-work, early-works, textile-based-inquiry, cordyceps-septet);
+   the three cephalopod-song pages are new.
+
+2. Drag the folder "cephalopod-song" into the top level (new folder, next to images and media).
+
+3. Open "recent-new" and drag its four JPGs into  images/recent/
+   (next to the cordyceps images). Do not drag the folder itself. Then delete the empty "recent-new" folder.
+
+Commit and push.
