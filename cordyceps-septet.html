@@ -75,7 +75,7 @@
 </head>
 <body>
 <main id="work">
-  <canvas id="stage" aria-label="Seven lines of light in a dark field, one for each pair of electrodes in a Cordyceps militaris culture. Beads flare where a channel spikes, gilt arcs join spikes that meet across channels, and blue light shows a small model's guesses and attention."></canvas>
+  <canvas id="stage" aria-label="Seven lines of light in a dark field, one for each pair of electrodes in a Cordyceps militaris culture. White beads flare where a channel spikes, gold arcs join spikes that meet across channels, and blue light shows a small model's guesses and attention."></canvas>
   <div class="beneath" id="beneath">
     <div class="controls">
       <button id="run" type="button" aria-pressed="false">Begin</button>
@@ -95,32 +95,34 @@
 <article id="about" hidden>
   <a class="link back" href="#">Return to the work</a>
   <h1><i>Cordyceps Septet</i></h1>
-  <p class="sub">Electrical activity in a fungus rendered as light and sound, with the reading of a small model trained on the voltage data.</p>
+  <p class="sub">Electrical activity in the <i>Cordyceps militaris</i> fungus rendered as light and sound against the reading of a small model trained on the voltage data.</p>
 
-  <h2>The recording</h2>
-  <p>Andrew Adamatzky inserted seven pairs of electrodes into a culture of <i>Cordyceps militaris</i>. Each pair recorded the voltage between its two points once a second for twenty-two days. Everything in the work comes from these readings. At the default pace, one day of the recording passes in one minute.</p>
+  <h2>Data</h2>
+  <p>In a study published in 2022, Andrew Adamatzky, a computer scientist who directs the Unconventional Computing Laboratory at the University of the West of England in Bristol, placed pairs of electrodes into a culture of <i>Cordyceps militaris</i>. Seven pairs, or channels, recorded the voltage between their two points once a second for twenty-two days. At the default pace, a day of the recording passes in one minute.</p>
 
-  <h2>The light</h2>
-  <p>In the visualization, each pair of electrodes is a line of light with the seven lines forming a ring. The bright ring is the present. The past recedes behind it, six hours at a time, with a faint ring for each hour and a brighter ring at the turn of each day.</p>
-  <p>Each channel drifts slowly over hours. A spike is a sudden jump away from that drift, more than four times the channel's usual tremor, so each channel is measured in relation to its own tendencies. A spike flares as a bead and dims as it recedes.</p>
-  <p>When two channels spike within thirty seconds of each other, a gilt arc joins them.</p>
+  <h2>Light</h2>
+  <p>In the visualization, each channel becomes a line of light, with the seven lines forming a ring. The brightest ring is the present, with the past receding behind it, six hours at a time, and an echo of the ring marking each hour.</p>
+  <p>Each channel is measured against its own behaviour: its slow drift over hours, and its usual small tremor around that drift. A spike is a sudden jump away from the drift, more than four times the channel&rsquo;s usual tremor. Each spike flares as a white bead and then dims as it recedes.</p>
+  <p>When two channels spike within thirty seconds of each other, they meet, and a gold arc joins them.</p>
 
-  <h2>The sound</h2>
-  <p>No sound was recorded. Each pair of electrodes has its own note. The low tone follows the drift. Each spike strikes a channel's note, and each meeting sounds both notes together. Sound and light come from the same numbers at the same moment.</p>
+  <h2>Sound</h2>
+  <p>Each channel has its own note. The low tones follow the drift. Each spike strikes a channel&rsquo;s note, and each meeting sounds both notes together.</p>
 
   <h2>The model</h2>
-  <p>The blue light belongs to a <a href="#model">small transformer model</a>, <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">the design behind large language models</a>. A language model learns by guessing the next word, checking that guess, and then adjusting. This model reads the last sixteen minutes of all seven channels and guesses whether each channel will spike in the next ten minutes. It was trained on the first four-fifths of the recording, which is about eighteen days.</p>
-  <p>The blue glow at the end of each line is its guess. The blue threads inside the ring show which channels it reads as it guesses. The gilt arcs outside the ring record what happened; the blue threads inside show what the model learned to attend to.</p>
-  <p>The model keeps none of the readings, but it remembers the relations. On the four days it never saw, it anticipates spikes better than chance on six of the seven channels, and it anticipates them less well when the other channels are scrambled. The quietest channel, which almost never spikes, is the one it reads most. The model cannot say whether the channels signal one another or answer a shared condition such as moisture or growth.</p>
+  <p>The blue light belongs to a <a href="#model">small transformer model</a>, based on the architecture introduced in 2017 by Ashish Vaswani and colleagues in their paper &ldquo;<a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention Is All You Need</a>.&rdquo; The same architecture underlies large language models, which are trained on vast amounts of text to predict what comes next. The mechanism at its centre is called attention. Rather than reading one step at a time, a transformer compares each part of its input with the parts that came before it and weighs how much each one matters. In a language model, this lets a word draw on others far back in a passage. Here, it lets each minute of a channel draw on what all seven channels were doing in the minutes before.</p>
+  <p>For this visualization, the model reads the last sixteen minutes of all seven channels and guesses whether each channel will spike in the next ten minutes. It was trained on the first four-fifths of the recording, about eighteen days, by comparing its guesses with what happened and adjusting its learned numbers.</p>
+  <p>The blue glow where each line meets the bright ring is the model&rsquo;s guess: the larger and brighter the glow, the more strongly it expects that channel to spike. The blue threads inside the ring join the channels it reads as it makes that guess, and the stronger its attention, the brighter the thread.</p>
+  <p>The gold arcs outside the ring record what happened, while the blue light shows what the model expects and where it is looking.</p>
+  <p>On the four days it never saw, it anticipates spikes better than chance on six of the seven channels, and does less well when the readings of the other six channels are shuffled so that their timing no longer lines up, which suggests it has learned from the timing of the relations between them. The quietest channel, which almost never spikes, is the one it attends to most strongly. The model does not tell us whether the channels are signalling one another or responding to a shared condition such as moisture or growth.</p>
 
   <h2>In numbers</h2>
-  <p>Seven electrode pairs; 1.9 million readings per pair; 5,948 spikes; 527 meetings, of which about 425 would occur by chance. The model holds about 13,000 learned numbers in two layers.</p>
+  <p>Seven electrode pairs; 1.9 million readings per pair; 5,948 spikes; 527 meetings, of which about 425 would occur by chance. The model holds about 10,000 learned numbers in two layers.</p>
 
   <h2>Sources</h2>
   <p>Data: Andrew Adamatzky, &ldquo;<a href="https://doi.org/10.1098/rsos.211926" target="_blank" rel="noopener">Language of fungi derived from their electrical spiking activity</a>,&rdquo; <i>Royal Society Open Science</i> 9 (2022): 211926. The recordings are <a href="https://zenodo.org/records/5790768" target="_blank" rel="noopener">published on Zenodo</a> under a Creative Commons Attribution 4.0 licence.</p>
   <p>Model design: Ashish Vaswani and colleagues, &ldquo;<a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention Is All You Need</a>,&rdquo; <i>Advances in Neural Information Processing Systems</i> 30 (2017).</p>
   <p>The model&rsquo;s <a href="#model">code</a> is open source under the MIT Licence.</p>
-  <p class="colophon">Made by Alexandra Emberley with Claude, September 2026.<br>&copy; 2026 Alexandra Emberley. All rights reserved, except the model&rsquo;s code (MIT Licence) and the recording (CC BY 4.0, Andrew Adamatzky).</p>
+  <p class="colophon">Made by Alexandra Emberley with Claude (Anthropic), September 2026.<br>&copy; 2026 Alexandra Emberley. All rights reserved, except the model&rsquo;s code (MIT Licence) and the recording (CC BY 4.0, Andrew Adamatzky).</p>
   <a class="link back end" href="#">Return to the work</a>
 </article>
 
