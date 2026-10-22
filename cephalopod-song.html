@@ -31,6 +31,7 @@
   .reading { max-width: 64ch; margin: 0 auto; padding: calc(40px + env(safe-area-inset-top, 0px)) 24px calc(56px + env(safe-area-inset-bottom, 0px)); line-height: 1.6; font-size: 18px; }
   .reading h1 { font-weight: 400; font-size: 30px; line-height: 1.2; margin: 0; }
   .reading .sub { color: var(--soft); margin: 8px 0 36px; }
+  #about h1 { margin-bottom: 36px; }
   .reading h2 { font-weight: 400; font-style: italic; font-size: 19px; color: var(--gilt); margin: 34px 0 6px; }
   .reading p { margin: 0 0 12px; }
   .reading .colophon { color: var(--faint); font-size: 15.5px; margin-top: 40px; }
@@ -75,10 +76,9 @@
 <article id="about" class="reading" hidden>
   <div class="nav"><a class="link" href="#">Return to the cover</a><a class="link" href="#studies">Attention Studies</a></div>
   <h1>Cephalopod Songs</h1>
-  <p class="sub">A cross-section of cephalopod skin asleep under a week of recorded light, with the reading of a small model trained on each record.</p>
 
   <h2>Skin</h2>
-  <p>A floating image depicts the structure of cephalopod skin in cross-section, slowly turning. It was inspired by Peter Godfrey-Smith&rsquo;s account in <i>Other Minds: The Octopus, the Sea, and the Deep Origins of Consciousness</i>, of how cephalopods change the colour of their skin.</p>
+  <p>A floating image depicts the structure of cephalopod skin in cross-section, slowly turning. The work was inspired by Peter Godfrey-Smith&rsquo;s account in <i>Other Minds: The Octopus, the Sea, and the Deep Origins of Consciousness</i>, of how cephalopods change the colour of their skin.</p>
   <p>At the surface are the chromatophores: sacs of yellow, red, and brown pigment that open and close. Beneath them are the iridophores: thin, tilted plates that reflect a narrow band of colour, shifting as they turn and flashing silver when seen face-on. At the base are the leucophores: white cells that reflect whatever light reaches them. As light passes down through the pigment sacs, it reflects upward from the layers beneath and travels back up through them. The Merge slider closes the three layers into a single surface, where the colours are produced through their interaction.</p>
 
   <h2>The light</h2>
@@ -86,16 +86,15 @@
 
   <h2>Sleep</h2>
   <p>The octopus sleeps according to the rhythm described by Medeiros and colleagues (2021): periods of quiet sleep, when it is pale and still, interrupted every thirty to forty minutes by an active sleep lasting less than a minute, during which the skin moves through changing colours. Quiet sleep passes at ten times its natural speed and active sleep at twice its natural speed, so that the changes are visible.</p>
-  <p>No octopus has been recorded in Cambridge Bay. The nearest cephalopod records are of bobtail squid and a small cold-water octopus, found in deeper water to the west and east.</p>
 
   <h2>Transformer echo</h2>
   <p>Beneath the three visible layers lies a fourth, fainter one: an echo. A <a href="#model">small transformer</a> was trained for each work on readings from its own sensor during July and August 2024, at ten-minute intervals. Neither was trained on the September week used in the work. As the work runs, the model receives the previous six hours of readings and predicts the next one.</p>
-  <p>The echo repeats the structure of the skin. It is faint and grey when the model&rsquo;s prediction is accurate, and brighter and coloured when it is wrong. It is amber when the model predicts more light than is measured, and blue when the measured light exceeds its prediction.</p>
-  <p>The model has learned the daily cycle, so at dawn and dusk the two skins tend to move together, with the echo following slightly behind. It cannot anticipate an individual cloud, so under changing cloud cover they separate: the skin flickers, while the echo changes colour in response to the model&rsquo;s errors. The model runs locally in the page.</p>
+  <p>The echo repeats the structure of the skin. It is faint and grey when the model&rsquo;s prediction is accurate, and brighter and coloured when it is wrong. It is amber when the model predicted more light than was measured, and blue when the measured light exceeded its prediction.</p>
+  <p>The model has learned the daily cycle, so at dawn and dusk the two skins tend to move together, with the echo following only slightly behind the measured light. It cannot anticipate an individual cloud, so under changing cloud cover they separate: the skin flickers while the echo changes colour in response to the model&rsquo;s errors. The model runs locally in the page.</p>
 
   <h2>Sound</h2>
   <p>Changes in light generate the notes: a note sounds only when the light moves by a set amount. Its pitch corresponds to the level of light. Dawn therefore rises, dusk falls, and a steady noon remains silent.</p>
-  <p>Each note is answered by the model, most of a second later and more quietly, an octave beneath the note it predicted. It is in tune when its prediction is accurate, and displaced by a step when the observed light differs from what was expected.</p>
+  <p>Each note is answered by the model, an octave beneath the note it predicted. It is in tune when its prediction is accurate, and out of tune when the observed light differs from what was expected.</p>
   <p>During active sleep, a low chord rocks between two harmonies like a lullaby, voiced according to the colours displayed by the chromatophores. Night introduces a hollow fifth. Beneath this is a layer of filtered noise resembling the sound of water, which rises and falls with the level of darkness.</p>
   <p>The key is B minor.</p>
 
@@ -105,7 +104,7 @@
   <p>Sleep: Medeiros, S.L.S. et al. (2021). Cyclic alternation of quiet and active sleep states in the octopus. <i>iScience</i> 24(4), 102223. <a href="https://doi.org/10.1016/j.isci.2021.102223" target="_blank" rel="noopener">doi:10.1016/j.isci.2021.102223</a></p>
   <p>Skin: Godfrey-Smith, P. (2016). <i>Other Minds: The Octopus, the Sea, and the Deep Origins of Consciousness</i>. New York: Farrar, Straus and Giroux.</p>
   <p>Model: two transformers of the same design (36 readings of context, 24 dimensions, 2 heads, 10,537 weights each), one trained on each station&rsquo;s July and August 2024 readings, running in the pages. Designed by the artist; built and trained by Claude (Anthropic). The model&rsquo;s <a href="#model">code</a> is open source under the MIT Licence.</p>
-  <p class="colophon">Made by Alexandra Emberley with Claude, October 2026.<br>&copy; 2026 Alexandra Emberley. All rights reserved, except the model&rsquo;s code (MIT Licence) and the light records (CC BY 3.0 AU, AIMS; CC BY 4.0, Ocean Networks Canada).</p>
+  <p class="colophon">&copy; 2026 Alexandra Emberley. All rights reserved, except the model&rsquo;s code (MIT Licence) and the light records (CC BY 3.0 AU, AIMS; CC BY 4.0, Ocean Networks Canada).</p>
   <div class="nav end"><a class="link" href="#">Return to the cover</a><a class="link" href="#studies">Attention Studies</a></div>
 </article>
 
