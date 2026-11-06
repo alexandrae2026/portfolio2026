@@ -39,12 +39,14 @@
   .reading .nav.end { margin: 28px 0 0; }
   .reading p a { color: var(--light); text-decoration: underline; text-decoration-color: rgba(217,178,90,.6); text-underline-offset: 3px; }
   .reading p a:hover { text-decoration-color: var(--gilt); }
-  #studies { max-width: 92ch; }
-  #studies h1 { margin-bottom: 8px; }
-  #studies figure { margin: 28px 0 0; }
-  #studies figure img { display: block; width: 100%; height: auto; border: 1px solid rgba(238,235,228,.08); }
-  #studies figcaption { color: var(--soft); font-size: 15.5px; line-height: 1.5; margin: 10px 0 0; }
-  #studies figcaption a { color: inherit; text-decoration: underline dotted; }
+  #studies, #object { max-width: 92ch; }
+  #object .intro { margin: 24px 0 8px; }
+  #studies h1, #object h1 { margin-bottom: 8px; }
+  #studies .sub, #object .sub { margin-bottom: 0; }
+  #studies figure, #object figure { margin: 28px 0 0; }
+  #studies figure img, #object figure img { display: block; width: 100%; height: auto; border: 1px solid rgba(238,235,228,.08); }
+  #studies figcaption, #object figcaption { color: var(--soft); font-size: 15.5px; line-height: 1.5; margin: 10px 0 0; }
+  #studies figcaption a, #object figcaption a { color: inherit; text-decoration: underline dotted; }
   #studies figure.study iframe { display: block; width: 100%; aspect-ratio: 16 / 10; border: 1px solid rgba(238,235,228,.08); background: #070a12; }
   #model { max-width: 92ch; }
   #model pre { font-size: 13px; line-height: 1.55; margin: 0; padding: 20px 22px; overflow-x: auto; background: rgba(238,235,228,.03); border: 1px solid rgba(238,235,228,.1); border-radius: 2px; }
@@ -60,7 +62,7 @@
 <body>
 <main id="cover">
   <h1>Cephalopod Songs</h1>
-  <p class="sub">A cross-section of cephalopod skin asleep under a week of recorded light, with the reading of a small model trained on each record.</p>
+  <p class="sub">A cross-section of cephalopod skin asleep under a week of recorded light, alongside predictions from small transformer models trained on earlier readings from each site.</p>
   <div class="records">
     <a class="record" href="cephalopod-song-arctic.html"><img src="cephalopod-song/still-arctic.png" alt="The same skin at night in a green dream, dim and blue-green."><p class="name"><i>Arctic</i></p><p class="where">Cambridge Bay, Nunavut, 9 m</p></a>
     <a class="record" href="cephalopod-song-reef.html"><img src="cephalopod-song/still-reef.png" alt="A slab of cephalopod skin seen in section under daylight: pale discs over blue plates over white."><p class="name"><i>Reef</i></p><p class="where">Davies Reef, Great Barrier Reef, 1.9 m</p></a>
@@ -68,6 +70,7 @@
   <div class="lines">
     <a class="link" href="#about">About this work</a>
     <a class="link" href="#studies">Attention Studies</a>
+    <a class="link" href="#object">Object Study</a>
     <a class="link" href="#model">The model</a>
     <a class="link" href="recent-work.html">Return to the portfolio</a>
   </div>
@@ -111,6 +114,7 @@
 <article id="studies" class="reading" hidden>
   <div class="nav"><a class="link" href="#">Return to the cover</a><a class="link" href="#about">About this work</a></div>
   <h1>Attention Studies</h1>
+  <p class="sub">These studies examine how the small transformers assigned different weights to earlier light readings when making predictions. The model&rsquo;s attention is represented through moving arcs, friezes, and cross-stitch charts, each offering a different way of seeing the same computational process.</p>
   <figure class="study">
     <iframe src="cephalopod-song-attention-arcs.html" title="Attention arcs: an interactive study of one day of the Arctic model&rsquo;s attention" loading="lazy"></iframe>
     <figcaption><i>Attention arcs.</i> One day of the Arctic record laid round a ring. For each prediction, the model&rsquo;s attention to the six hours before it is drawn as an arc back to the moments it attended to, lifted in proportion to its weight. Click the ring to begin and drag to turn; the buttons choose the day and the head.</figcaption>
@@ -130,6 +134,26 @@
   <figure>
     <img src="cephalopod-song/chart-reef.png" alt="A cross-stitch chart on a pale grid: the same day of the Reef attention frieze as 144 by 36 stitches in four greys, each marked with a cross.">
     <figcaption><i>Cross-stitch chart, Reef.</i> The same day of the Reef frieze: 144 &times; 36 stitches, 26 &times; 6.5 cm on 14-count cloth.</figcaption>
+  </figure>
+  <div class="nav end"><a class="link" href="#">Return to the cover</a><a class="link" href="#about">About this work</a></div>
+</article>
+
+<article id="object" class="reading" hidden>
+  <div class="nav"><a class="link" href="#">Return to the cover</a><a class="link" href="#studies">Attention Studies</a></div>
+  <h1>Object Study</h1>
+  <p class="sub"><i>Cephalopod Songs: Arctic</i>, 2026, a speculative sculptural study.</p>
+  <p class="intro">These drawings explore how the <i>Arctic</i> visualization might become a physical object. They propose layers of glass, moving optical elements, light, and sound, driven by the same environmental record and model as the visualization. The drawings model one possibility for translating the image into an object, rather than a finished construction plan.</p>
+  <figure>
+    <img src="cephalopod-song/object-sheet-1.jpg" width="2397" height="1551" alt="Drawing sheet: plan and elevations of an oval glass slab on a plinth, dotted with coloured discs, with notes on scale, drive, and materials.">
+    <figcaption><i>Sheet 1.</i> Overall arrangement: plan, elevations, notes.</figcaption>
+  </figure>
+  <figure>
+    <img src="cephalopod-song/object-sheet-2.jpg" width="2397" height="1551" alt="Drawing sheet: setting plan of the chromatophore layer on a grid, a size schedule, the three film sheets, a section detail, and a table of states.">
+    <figcaption><i>Sheet 2.</i> Chromatophore layer: setting plan, sizes, states control.</figcaption>
+  </figure>
+  <figure>
+    <img src="cephalopod-song/object-sheet-4.jpg" width="2397" height="1551" alt="Drawing sheet: the week of Cambridge Bay light, the model's predictions, the echo as amber and blue bars, a lamp section, and a sleep clock.">
+    <figcaption><i>Sheet 4.</i> Light and echo.</figcaption>
   </figure>
   <div class="nav end"><a class="link" href="#">Return to the cover</a><a class="link" href="#about">About this work</a></div>
 </article>
@@ -240,11 +264,11 @@ def windows(F, lum):
 </section>
 
 <script>
-  // three pages in one file: the cover, about the work, the thread studies, and the model
-  const views = { "#about": "about", "#studies": "studies", "#model": "model" };
+  // pages in one file: the cover, about the work, the attention studies, the object study, and the model
+  const views = { "#about": "about", "#studies": "studies", "#object": "object", "#model": "model" };
   function show() {
     const v = views[location.hash] || "cover";
-    for (const id of ["cover", "about", "studies", "model"]) document.getElementById(id).hidden = id !== v;
+    for (const id of ["cover", "about", "studies", "object", "model"]) document.getElementById(id).hidden = id !== v;
     window.scrollTo(0, 0);
   }
   addEventListener("hashchange", show); show();
